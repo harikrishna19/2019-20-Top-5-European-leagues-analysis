@@ -1,0 +1,77 @@
+Player,Nation,Pos,Squad,Comp,Age,Born,MP,Starts,Min,GA,GA90,SoTA,Saves
+Antonio Adán,es ESP,GK,Atlético Madrid,es La Liga,32,1987,1,0,25,0,0,1,1
+Adrián,es ESP,GK,Liverpool,eng Premier League,32,1987,11,9,875,10,1.03,28,17
+Rúnar Alex Rúnarsson,is ISL,GK,Dijon,fr Ligue 1,24,1995,11,9,900,17,1.7,46,29
+Enrico Alfonso,it ITA,GK,Brescia,it Serie A,31,1988,4,4,279,4,1.29,11,7
+Alisson,br BRA,GK,Liverpool,eng Premier League,26,1992,29,29,"2,543",23,0.81,79,58
+Sergio Álvarez,es ESP,GK,Celta Vigo,es La Liga,32,1986,4,4,180,1,0.5,4,3
+Lorenzo Andrenacci,it ITA,GK,Brescia,it Serie A,24,1995,6,5,531,16,2.71,45,28
+Miguel Ángel Moyá,es ESP,GK,Real Sociedad,es La Liga,35,1984,13,13,"1,170",16,1.23,51,36
+Kepa Arrizabalaga,es ESP,GK,Chelsea,eng Premier League,24,1994,33,33,"2,970",47,1.42,99,55
+Sergio Asenjo,es ESP,GK,Villarreal,es La Liga,30,1989,34,34,"3,060",41,1.21,142,107
+Emil Audero,it ITA,GK,Sampdoria,it Serie A,22,1997,36,36,"3,240",60,1.67,160,110
+Stefan Bajic,fr FRA,GK,Saint-Étienne,fr Ligue 1,17,2001,1,1,90,1,1,2,1
+Oliver Baumann,de GER,GK,Hoffenheim,de Bundesliga,29,1990,30,30,"2,700",49,1.63,143,101
+Asmir Begović,ba BIH,GK,Milan,it Serie A,32,1987,2,1,129,3,2.09,6,4
+Walter Benítez,ar ARG,GK,Nice,fr Ligue 1,26,1993,26,26,"2,340",36,1.38,129,99
+Etrit Berisha,al ALB,GK,SPAL,it Serie A,30,1989,26,26,"2,340",41,1.58,142,106
+Paul Bernardoni,fr FRA,GK,Nîmes,fr Ligue 1,22,1997,25,25,"2,204",38,1.55,102,69
+Dimitry Bertaud,fr FRA,GK,Montpellier,fr Ligue 1,21,1998,3,3,196,3,1.38,6,3
+Rubén Blanco,es ESP,GK,Celta Vigo,es La Liga,24,1995,33,33,"2,960",43,1.31,126,87
+Yassine Bounou,ma MAR,GK,Sevilla,es La Liga,28,1991,6,5,495,3,0.55,19,17
+Federico Brancolini,it ITA,GK,Fiorentina,it Serie A,18,2001,1,0,6,0,0,0,0
+Claudio Bravo,cl CHI,GK,Manchester City,eng Premier League,36,1983,4,3,347,7,1.82,15,8
+Gianluigi Buffon,it ITA,GK,Juventus,it Serie A,41,1978,9,9,810,10,1.11,32,23
+Roman Bürki,ch SUI,GK,Dortmund,de Bundesliga,28,1990,31,31,"2,770",40,1.3,93,59
+Ludovic Butelle,fr FRA,GK,Angers,fr Ligue 1,36,1983,26,26,"2,340",32,1.23,78,50
+Marcin Bułka,pl POL,GK,Paris S-G,fr Ligue 1,19,1999,1,1,90,0,0,2,2
+Willy Caballero,ar ARG,GK,Chelsea,eng Premier League,37,1981,5,5,450,7,1.4,16,10
+Matis Carvalho,pt POR,GK,Montpellier,fr Ligue 1,20,1999,1,0,71,4,5.07,8,5
+Koen Casteels,be BEL,GK,Wolfsburg,de Bundesliga,27,1992,26,26,"2,340",38,1.46,104,69
+Churripi,es ESP,GK,Valladolid,es La Liga,25,1994,3,3,244,3,1.11,13,10
+Jasper Cillessen,nl NED,GK,Valencia,es La Liga,30,1989,24,24,"2,096",30,1.29,102,78
+Yannis Clementia,fr FRA,GK,Nice,fr Ligue 1,22,1997,2,2,180,2,1,6,5
+Simone Colombi,it ITA,GK,Parma,it Serie A,28,1991,4,4,360,4,1,17,14
+Andrea Consigli,it ITA,GK,Sassuolo,it Serie A,32,1987,31,31,"2,790",55,1.77,140,93
+Angelo da Costa Júnior,br BRA,GK,Bologna,it Serie A,35,1983,1,1,90,1,1,2,1
+Benoît Costil,fr FRA,GK,Bordeaux,fr Ligue 1,32,1987,28,28,"2,520",34,1.21,106,75
+Thibaut Courtois,be BEL,GK,Real Madrid,es La Liga,27,1992,34,34,"3,060",20,0.59,95,74
+Alessio Cragno,it ITA,GK,Cagliari,it Serie A,25,1994,16,16,"1,440",21,1.31,86,66
+Iván Cuéllar,es ESP,GK,Leganés,es La Liga,35,1984,27,27,"2,429",33,1.22,99,67
+Paul Delecroix,fr FRA,GK,Metz,fr Ligue 1,30,1988,2,1,135,4,2.67,5,2
+Lucas Dias,fr FRA,GK,Nîmes,fr Ligue 1,20,1999,4,3,316,6,1.71,18,12
+Marko Dmitrović,rs SRB,GK,Eibar,es La Liga,27,1992,35,35,"3,150",51,1.46,113,67
+Jaume Doménech,es ESP,GK,Valencia,es La Liga,28,1990,15,14,"1,324",23,1.56,80,58
+Gianluigi Donnarumma,it ITA,GK,Milan,it Serie A,20,1999,36,36,"3,201",42,1.18,134,97
+Bartłomiej Drągowski,pl POL,GK,Fiorentina,it Serie A,21,1997,31,31,"2,790",43,1.39,131,94
+Martin Dúbravka,sk SVK,GK,Newcastle Utd,eng Premier League,30,1989,38,38,"3,420",58,1.53,190,134
+Ederson,br BRA,GK,Manchester City,eng Premier League,25,1993,35,35,"3,071",28,0.82,92,65
+Aarón Escandell,es ESP,GK,Granada,es La Liga,23,1995,3,3,270,3,1,13,10
+Łukasz Fabiański,pl POL,GK,West Ham,eng Premier League,34,1985,25,25,"2,117",34,1.45,98,69
+Fabricio,es ESP,GK,Mallorca,es La Liga,31,1987,2,2,90,3,3,5,3
+Ralf Fährmann,de GER,GK,Norwich City,eng Premier League,30,1988,1,1,21,1,4.29,1,1
+Wladimiro Falcone,it ITA,GK,Sampdoria,it Serie A,24,1995,2,2,180,5,2.5,14,9
+Aitor Fernández,es ESP,GK,Levante,es La Liga,28,1991,36,36,"3,240",51,1.42,201,152
+Andrés Fernández,es ESP,GK,Villarreal,es La Liga,32,1986,4,4,360,8,2,17,13
+Mark Flekken,nl NED,GK,Freiburg,de Bundesliga,26,1993,10,10,900,14,1.4,70,54
+Ben Foster,eng ENG,GK,Watford,eng Premier League,36,1983,38,38,"3,420",64,1.68,166,109
+Daniel Fuzato,br BRA,GK,Roma,it Serie A,22,1997,1,1,90,1,1,2,1
+Gabriel,br BRA,GK,Lecce,it Serie A,26,1992,34,34,"2,997",76,2.28,217,153
+Paulo Gazzaniga,ar ARG,GK,Tottenham,eng Premier League,27,1992,18,17,"1,613",26,1.45,79,56
+David de Gea,es ESP,GK,Manchester Utd,eng Premier League,28,1990,38,38,"3,420",36,0.95,125,92
+Rafał Gikiewicz,pl POL,GK,Union Berlin,de Bundesliga,31,1987,33,33,"2,970",54,1.64,160,109
+Mauro Goicoechea,uy URU,GK,Toulouse,fr Ligue 1,31,1988,2,2,180,5,2.5,13,8
+Pierluigi Gollini,it ITA,GK,Atalanta,it Serie A,24,1995,33,33,"2,884",42,1.31,113,78
+Alfred Gomis,sn SEN,GK,Dijon,fr Ligue 1,25,1993,19,19,"1,620",20,1.11,83,65
+Vicente Guaita,es ESP,GK,Crystal Palace,eng Premier League,32,1987,35,35,"3,150",42,1.2,147,106
+Péter Gulácsi,hu HUN,GK,RB Leipzig,de Bundesliga,29,1990,32,32,"2,880",34,1.06,117,82
+Angus Gunn,eng ENG,GK,Southampton,eng Premier League,23,1996,10,10,900,25,2.5,53,30
+Régis Gurtner,fr FRA,GK,Amiens,fr Ligue 1,32,1986,28,28,"2,520",50,1.79,140,92
+Samir Handanović,si SVN,GK,Inter,it Serie A,35,1984,35,35,"3,150",32,0.91,108,79
+Tom Heaton,eng ENG,GK,Aston Villa,eng Premier League,33,1986,20,20,"1,794",35,1.76,99,67
+Dean Henderson,eng ENG,GK,Sheffield Utd,eng Premier League,22,1997,36,36,"3,240",33,0.92,129,97
+Wayne Hennessey,wal WAL,GK,Crystal Palace,eng Premier League,32,1987,3,3,270,8,2.67,22,14
+Sergio Herrera,es ESP,GK,Osasuna,es La Liga,26,1993,19,18,"1,655",27,1.47,79,52
+Iago Herrerín,es ESP,GK,Athletic Club,es La Liga,31,1988,5,4,425,9,1.91,18,9
+Marwin Hitz,ch SUI,GK,Dortmund,de Bundesliga,31,1987,4,3,290,1,0.31,7,6
+Timo Horn,de GER,GK,Köln,de Bundesliga,26,1993,34,34,"3,060",69,2.03,152,87
