@@ -825,19 +825,19 @@ shinyServer<- function(input, output, session) {
     })
     
     observeEvent(input$use, {
-      updatePickerInput(
+      updateSelectizeInput(
         session = session,
         inputId = "alternative",
         choices = names(rawdata())
       )
       
-      updatePickerInput(
+     updateSelectizeInput(
         session = session,
         inputId = "attribute_max",
         choices = names(rawdata())
       )
       
-      updatePickerInput(
+     updateSelectizeInput(
         session = session,
         inputId = "attribute_min",
         choices = names(rawdata())
@@ -965,63 +965,7 @@ shinyServer<- function(input, output, session) {
     })
     
     res <- eventReactive(input$apply, {
-      if (input$method == "MetaRanking") {
-        cb <- c(
-          rep("max", length(input$attribute_max)),
-          rep("min", length(input$attribute_min))
-        )
-        
-        w <- map_dbl(
-          c(input$attribute_max, input$attribute_min),
-          ~ input[[paste0("weight_", .x)]]
-        )
-        
-        res <- dataset() %>%
-          as.data.frame() %>%
-          `rownames<-`(.[, input$alternative]) %>%
-          select_if(is.numeric) %>%
-          as.matrix() %>%
-          MetaRanking_custom(weights = w, cb =  cb, v = input$v, lambda = input$lambda) %>%
-          as_tibble() %>%
-          rename(Alternative = Alternatives,
-                 "TOPSIS Vector" = TOPSISVector,
-                 "TOPSIS Linear" = TOPSISLinear,
-                 "Meta Ranking (Sum)" = MetaRanking_Sum,
-                 "Meta Ranking (Aggregate)" = MetaRanking_Aggreg) %>%
-          mutate(Alternative = pull(dataset()[, input$alternative])) %>% 
-          mutate_if(is_double, .funs = funs(round(., 2)))
-        
-      } else if (input$method == "MMOORA") {
-        cb <- c(
-          rep("max", length(input$attribute_max)),
-          rep("min", length(input$attribute_min))
-        )
-        
-        w <- map_dbl(
-          c(input$attribute_max, input$attribute_min),
-          ~ input[[paste0("weight_", .x)]]
-        )
-        
-        res <- dataset() %>%
-          as.data.frame() %>%
-          `rownames<-`(.[, input$alternative]) %>%
-          select_if(is.numeric) %>%
-          as.matrix() %>%
-          MMOORA(w, cb) %>%
-          as_tibble() %>%
-          rename(Alternative = Alternatives,
-                 "Ratio System" = RatioSystem,
-                 "Ranking (Ratio System)" = Ranking,
-                 "Reference Point" = ReferencePoint,
-                 "Ranking (Reference Point)" = Ranking.1,
-                 "Multiplicative Form" = MultiplicativeForm,
-                 "Ranking (Multipicative Form)" = Ranking.2,
-                 "Overal Ranking (Multi MOORA)" = MultiMooraRanking) %>% 
-          mutate(Alternative = pull(dataset()[, input$alternative])) %>% 
-          mutate_if(is_double, .funs = funs(round(., 2)))
-      } else if (input$method == "RIM") {
-        
-      } else if (input$method == "TOPSISLinear") {
+      if (input$method == "TOPSISLinear") {
         cb <- c(
           rep("max", length(input$attribute_max)),
           rep("min", length(input$attribute_min))
@@ -1065,55 +1009,7 @@ shinyServer<- function(input, output, session) {
                  "R index" = R) %>%
           mutate(Alternative = pull(dataset()[, input$alternative])) %>% 
           mutate_if(is_double, .funs = funs(round(., 2)))
-      } else if (input$method == "VIKOR") {
-        cb <- c(
-          rep("max", length(input$attribute_max)),
-          rep("min", length(input$attribute_min))
-        )
-        
-        w <- map_dbl(
-          c(input$attribute_max, input$attribute_min),
-          ~ input[[paste0("weight_", .x)]]
-        )
-        
-        res <- dataset() %>%
-          as.data.frame() %>%
-          `rownames<-`(.[, input$alternative]) %>%
-          select_if(is.numeric) %>%
-          as.matrix() %>%
-          VIKOR(w, cb, v = input$v) %>%
-          as_tibble() %>%
-          rename(Alternative = Alternatives,
-                 "S index" = S,
-                 "R index" = R,
-                 "Q index" = Q) %>%
-          mutate(Alternative = pull(dataset()[, input$alternative])) %>% 
-          mutate_if(is_double, .funs = funs(round(., 2)))
-      } else if (input$method == "WASPAS") {
-        cb <- c(
-          rep("max", length(input$attribute_max)),
-          rep("min", length(input$attribute_min))
-        )
-        
-        w <- map_dbl(
-          c(input$attribute_max, input$attribute_min),
-          ~ input[[paste0("weight_", .x)]]
-        )
-        
-        res <- dataset() %>%
-          as.data.frame() %>%
-          `rownames<-`(.[, input$alternative]) %>%
-          select_if(is.numeric) %>%
-          as.matrix() %>%
-          WASPAS(w, cb, lambda = input$lambda) %>%
-          as_tibble() %>%
-          rename(Alternative = Alternatives,
-                 "WSM Score" = WSM,
-                 "WPM Score" = WPM,
-                 "Q index" = Q) %>%
-          mutate(Alternative = pull(dataset()[, input$alternative])) %>% 
-          mutate_if(is_double, .funs = funs(round(., 2))) 
-      }
+      } 
       return(res)
     })
     

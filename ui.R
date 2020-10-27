@@ -278,16 +278,7 @@ shinyUI(fluidPage(theme=shinytheme("simplex"),
                                                             withSpinner(plotOutput("tt_summary",height = "700px"))),
                                                    
                                                    tabPanel("Profit", 
-                                                            withSpinner(plotOutput("tt_profit",height = "700px"))),
-                                               
-                                                   
-                                                   tabPanel("Top Transfers", 
-                                                            withSpinner(plotOutput("tt_top",height = "700px"))),
-                                                   
-                                                   tabPanel("BMI", 
-                                                            br(),
-                                                            column(width = 6, withSpinner(tableOutput("tt_bmi"))),
-                                                            column(width = 6, withSpinner(plotOutput("tt_bmi2"))))
+                                                            withSpinner(plotOutput("tt_profit",height = "700px")))
                                        )
                       )
                     )
@@ -430,12 +421,12 @@ shinyUI(fluidPage(theme=shinytheme("simplex"),
                                 conditionalPanel(
                                   condition = "input.use",
                                   br(),
-                                  pickerInput(
+                                selectizeInput(
                                     "alternative",
                                     "Select column containing alternatives",
                                     choices = NULL
                                   ),
-                                  pickerInput(
+                                 selectizeInput(
                                     "attribute_max",
                                     "'The higher, the better' attribute(s)",
                                     choices = NULL,
@@ -445,7 +436,7 @@ shinyUI(fluidPage(theme=shinytheme("simplex"),
                                       "actions-box" = TRUE
                                     )
                                   ),
-                                  pickerInput(
+                                  selectizeInput(
                                     "attribute_min",
                                     "The lower, the better' attribute(s)",
                                     choices = NULL,
@@ -472,60 +463,18 @@ shinyUI(fluidPage(theme=shinytheme("simplex"),
                             sidebarLayout(
                               sidebarPanel(
                                 uiOutput("setting_panel"),
-                                pickerInput(
+                                selectizeInput(
                                   "method",
                                   "Method",
                                   choices = c(
-                                    "Multi-MOORA" = "MMOORA",
+                      
                                     "TOPSIS Linear" = "TOPSISLinear",
-                                    "TOPSIS Vector" = "TOPSISVector",
-                                    "VIKOR" = "VIKOR",
-                                    "WASPAS" = "WASPAS",
-                                    "Meta Ranking" = "MetaRanking"
+                                    "TOPSIS Vector" = "TOPSISVector"
+                          
                                   ),
                                   selected = "TOPSISVector"
                                 ),
-                                conditionalPanel(
-                                  condition = "input.method == 'VIKOR'",
-                                  sliderInput(
-                                    "v",
-                                    "'v' value (Default: 0.5)",
-                                    min = 0,
-                                    max = 1,
-                                    value = 0.5,
-                                    step = 0.1
-                                  )
-                                ),
-                                conditionalPanel(
-                                  condition = "input.method == 'WASPAS'",
-                                  sliderInput(
-                                    "lambda",
-                                    "'lambda' value (Default: 0.5)",
-                                    min = 0,
-                                    max = 1,
-                                    value = 0.5,
-                                    step = 0.1
-                                  )
-                                ),
-                                conditionalPanel(
-                                  condition = "input.method == 'MetaRanking'",
-                                  sliderInput(
-                                    "v",
-                                    "'v' value (Default: 0.5)",
-                                    min = 0,
-                                    max = 1,
-                                    value = 0.5,
-                                    step = 0.1
-                                  ),
-                                  sliderInput(
-                                    "lambda",
-                                    "'lambda' value (Default: 0.5)",
-                                    min = 0,
-                                    max = 1,
-                                    value = 0.5,
-                                    step = 0.1
-                                  )
-                                ),
+                              
                                 actionButton(
                                   "apply",
                                   "Apply"
