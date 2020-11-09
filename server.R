@@ -23,9 +23,9 @@ library(formattable)
 library(shinyjs)
 library(DiagrammeR)
 library(ahp)
-
+dset=read.csv("data/dB_FIFA.csv")
 #loading all five leagues loan data for loan analysis for the players
-player_loan<-read.csv("C:\\Users\\krishna\\Desktop\\PROJECT\\Transfermarkt-master\\Transfermarkt-master\\data\\2019\\201920loandata.csv")
+player_loan<-read.csv("data/201920loandata.csv")
 
 #utils::View(player_loan)
 
@@ -127,7 +127,7 @@ TryAsNumeric <- function(input, defaultVal) {
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load("dplyr", "ggplot2", "readr", "showtext")
-source("C:\\Users\\krishna\\Desktop\\PROJECT\\Transfermarkt-master\\Transfermarkt-master\\src\\01-clean.R")
+source("data/01-clean.R")
 
 
 #analysis
@@ -135,7 +135,7 @@ source("C:\\Users\\krishna\\Desktop\\PROJECT\\Transfermarkt-master\\Transfermark
 
 # DATA AND ANALYSIS
 # Look only at movements with a fee
-over_loan <- read_csv("C:\\Users\\krishna\\Desktop\\PROJECT\\Transfermarkt-master\\Transfermarkt-master\\data\\2019\\201920loandata.csv") %>% tidy_transfers()
+over_loan <- read_csv("data/201920loandata.csv") %>% tidy_transfers()
 transfers <- over_loan %>% filter(!is_loan | fee > 0)
 #View(transfers)
 
@@ -1043,14 +1043,12 @@ shinyServer<- function(input, output, session) {
     server = FALSE
     )
     
-    
+    options(shiny.sanitize.errors = FALSE)    
     
     
 }
 
         
-      
-    
     
     
 

@@ -1,0 +1,474 @@
+
+title: "R Notebook"
+output: html_notebook
+
+
+#Importing the required datasets for analysis
+fifa_data=readr::read_csv("C:\\Users\\krishna\\Desktop\\PROJECT\\2020SEPT\\fifa_project.csv")
+
+
+bundesliga <- c(
+  "SC Paderborn 07", "1. FSV Mainz 05", "Bayer 04 Leverkusen", "FC Bayern Munchen",
+  "Borussia Dortmund", "Borussia Monchengladbach", "Eintracht Frankfurt",
+  "FC Augsburg", "FC Schalke 04", "Fortuna Dusseldorf", "1. FC Union Berlin",
+  "Hertha BSC", "RB Leipzig", "SC Freiburg", "TSG 1899 Hoffenheim",
+  "1. FC Koln", "VfL Wolfsburg", "SV Werder Bremen"
+)
+
+premierLeague <- c(
+  "Arsenal", "Bournemouth", "Brighton & Hove Albion", "Burnley",
+  "Norwich City", "Chelsea", "Crystal Palace", "Everton", "Sheffield United",
+  "Aston Villa", "Leicester City", "Liverpool", "Manchester City",
+  "Manchester United", "Newcastle United", "Southampton", 
+  "Tottenham Hotspur", "Watford", "West Ham United", "Wolverhampton Wanderers")
+  
+laliga <- c(
+  "Athletic Club de Bilbao", "Atletico Madrid", "CD Leganes",
+  "Deportivo Alaves", "FC Barcelona", "Getafe CF", 
+  "Levante UD", "RC Celta", "RCD Espanyol", 
+  "Real Betis", "Real Madrid", "Real Sociedad", "Real Valladolid CF",
+  "SD Eibar", "Sevilla FC", "Valencia CF", "Villarreal CF",
+  "CA Osasuna","Granada CF","RCD Mallorca"
+)
+
+
+
+seriea <- c(
+  "Atalanta","Bologna","Cagliari", "Fiorentina","Genoa",
+  "Inter","Juventus","Lazio","Milan","Napoli","Parma","Roma","Sampdoria","Sassuolo","SPAL",
+  "Torino","Udinese","Brescia","Lecce","Hellas Verona")
+
+
+
+ligue1 <- c(
+  "Amiens SC", "Angers SCO", "AS Monaco", "AS Saint-etienne", "Dijon FCO", "FC Metz",
+  "FC Nantes", "FC Girondins de Bordeaux", "LOSC Lille", "Montpellier HSC", "Nimes Olympique", 
+  "OGC Nice", "Olympique Lyonnais","Olympique de Marseille", "Paris Saint-Germain", 
+  "RC Strasbourg Alsace", "Stade Brestois 29", "Stade de Reims", "Stade Rennais FC", "Toulouse Football Club")
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+```{r}
+
+library(dplyr)
+#Creating league for teams
+
+temp=fifa_data %<>% mutate(League = if_else(club %in% bundesliga, "Bundesliga",
+                                  if_else(club %in% premierLeague, "Premier League", 
+                                          if_else(club %in% laliga, "La Liga", 
+                                                  if_else(club %in% seriea, "Serie A", 
+                                                                  if_else(club %in% ligue1, "Ligue 1",NA_character_))))),
+                 
+                 Country = if_else(League == "Bundesliga", "Germany",
+                                   if_else(League == "Premier League", "UK",
+                                           if_else(League == "La Liga", "Spain", 
+                                                   if_else(League == "Serie A", "Italy", 
+                                                           if_else(League == "Ligue 1", "France", NA_character_)))))) %>% 
+  filter(!is.na(League)) %>% mutate_if(is.factor, as.character())
+
+
+rm(bundesliga, premierLeague, laliga, seriea, ligue1)
+
+```
+
+```{r}
+# 5. Position Class -------------------------------------------------------
+library(dplyr)
+library(magrittr)
+# Create Position Class #
+defence <- c("CB", "RB", "LB", "LWB", "RWB", "LCB", "RCB")
+midfielder <- c("CM", "CDM","CAM","LM","RM", "LAM", "RAM", "LCM", "RCM", "LDM", "RDM")
+
+temp %<>% mutate(Class = if_else(player_positions %in% "GK", "Goal Keeper",
+                                 if_else(player_positions %in% defence, "Defender",
+                                         if_else(player_positions %in% midfielder, "Midfielder", "Forward"))))
+
+rm(defence, midfielder)
+```
+
+
+
+# To change values to characters
+```{r}
+#Formatting nos to currncy
+val<- function(x) {
+  dplyr::case_when(
+      x < 1e3 ~ as.character(x),
+      x < 1e6 ~ paste0(as.character(x/1e3), "K"),
+      x < 1e9 ~ paste0(as.character(x/1e6), "M"),
+      TRUE ~ "To be implemented..."
+  )
+}
+test=val(temp$value_eur)
+```
+
+```{r}
+val1<- function(y) {
+  dplyr::case_when(
+      y < 1e3 ~ as.character(y),
+      y < 1e6 ~ paste0(as.character(y/1e3), "K"),
+      y < 1e9 ~ paste0(as.character(y/1e6), "M"),
+      TRUE ~ "To be implemented..."
+  )
+}
+test1=val1(temp$wage_eur)
+
+```
+
+```{r}
+temp1=temp  %>% 
+  mutate(
+    Value=val(temp$value_eur),
+    Wages=val1(temp$wage_eur)
+  )
+```
+
+
+```{r}
+temp1$value_eur = paste0('€', temp1$Value)
+temp1$wage_eur=paste0('€',temp1$Wages)
+```
+
+
+```{r eval=FALSE, include=FALSE}
+#library(gt)
+#choosing currencries as euros
+#temp %>% 
+  dplyr::select(value_eur,wage_eur) %>%
+ # gt() %>%
+  fmt_currency(
+    columns = vars(value_eur),
+    currency = "EUR"
+  ) %>%
+  fmt_currency(
+    columns = vars(wage_eur),
+    currency = "EUR"
+  )
+```
+
+
+```{r}
+temp1 <- temp1 %>% arrange(Player) %>% mutate(Name.Pos = paste0(as.character(Player),", ", as.character(player_positions))) 
+```
+
+
+
+```{r}
+write.csv(temp1,"C:\\Users\\krishna\\Desktop\\PROJECT\\2020SEPT\\ori_FIFA.csv")
+```
+
+
+
+
+
+
+
+
+
+
+```{r}
+df=read.csv("C:\\Users\\krishna\\Desktop\\PROJECT\\2020SEPT\\FIFA.csv")
+View(df)
+```
+
+
+```{r}
+library(plotly)
+
+fig <- plot_ly(
+    type = 'scatterpolar',
+    fill = 'toself'
+  ) 
+fig <- temp1 %>%
+  add_trace(
+    r = c(),
+    theta = c('A','B','C', 'D', 'E', 'A'),
+    name = temp$Player
+  ) 
+fig <- fig %>%
+  add_trace(
+    r = c(1.5, 10, 39, 31, 15, 1.5),
+    theta = c('A','B','C', 'D', 'E', 'A'),
+    name = temp$Player
+  ) 
+fig <- fig %>%
+  layout(
+    polar = list(
+      radialaxis = list(
+        visible = T,
+        range = c(0,100)
+      )
+    )
+  )
+
+fig
+```
+/
+
+```{r}
+
+fig <- plot_ly(
+    type = 'scatterpolar',
+    r = c( 88,96),
+    theta = c(temp$overall,temp$potential),
+    fill = 'toself'
+  ) 
+fig <- fig %>%
+  layout(
+    polar = list(
+      radialaxis = list(
+        visible = T,
+        range = c(0,100)
+      )
+    ),
+    showlegend = F
+  )
+
+fig
+```
+
+
+#Pre-processing of fbref data set for 2019/20 top 5 european leagues
+
+```{r}
+setwd("C:\\Users\\krishna\\Desktop\\FactorAnalysis-master\\FactorAnalysis-master")
+```
+
+
+
+```{r}
+BigFiveStandard <- read.csv('OverallStats.txt')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+library(dplyr)
+
+# Import data from 19/20 season from fbref
+
+#Overall stats
+BigFiveoverall<- read.csv("C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\OverallStats.txt")
+
+BigFiveoverall<-select(BigFiveoverall,"Player","Squad","Pos","Gls","Ast",
+                         "Comp","Min","Glsp90","Astp90",
+                         "npxGp90","xAp90","Age")
+
+
+#Creation stats
+BigFiveCreate <- read.csv("C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\Creation.txt")
+
+
+BigFiveCreate <-select(BigFiveCreate,"Player","Squad","SCA90",
+                         "ShotPassLive","ShotPassDead","ShotDrib",
+                         "ShotSh","ShotFoul","GCA90","GoalPassLive",
+                         "GoalPassDead","GoalDrib","GoalSh",
+                         "GoalFoul")
+
+#Defence stats
+BigFiveDef <- read.csv('C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\Defence.txt')
+
+BigFiveDef <-select(BigFiveDef,"Player","Squad",
+                        "Tklp90",
+                        "Pressp90","SuccPressp90","Def3rdPresp90",
+                        "Mid3rdPresp90","Att3rdPresp90",
+                        "Def3rdTklp90","Mid3rdTklp90",
+                         "Att3rdTklp90","Tkl.","DribbledPastp90",
+                         "SuccPressp90","Def3rdPresp90","Mid3rdPresp90",
+                         "Att3rdPresp90","Intp90","Clrp90",
+                         "Errp90")
+
+#Misc Stats
+BigFiveMiscs <- read.csv('C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\Misc.txt')
+
+BigFiveMiscs <-select(BigFiveMiscs,"Player","Squad",
+                        "FlsCommittedp90","FlsDrawnp90",
+                        "Offp90","Crsp90","RecovBalls",
+                        "WonAerialp90","LostAerialp90")
+
+
+#Passing Stats
+BigFivePass <- read.csv('C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\Passing.txt')
+
+BigFivePass <- select(BigFivePass,"Player","Squad",
+                     "PassTotDistp90","PassPrgDistp90",
+                     "CmpShortp90","AttShortp90","CmpMediump90",
+                     "AttMediump90","CmpTotalp90","AttTotalp90",
+                     "CmpLongp90","AttLongp90","KPp90","PassIntoFinalThirdp90",
+                     "PPAp90","ProgPassp90")
+
+#Passing Stats
+BigFivePoss <- read.csv('C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\Possession.txt')
+
+BigFivePoss <-select(BigFivePoss,"Player","Squad",
+                       "Touchesp90","DefPenTouchesp90",
+                       "Def3rdTouchesp90","Mid3rdTouchesp90","Att3rdTouchesp90",
+                       "AttPenTouchesp90","LiveTouches","SuccDribblesp90","AttDribblesp90",
+                       "Carriesp90","TotDistCarriedp90","PrgDistCarriedp90",
+                       "RecPassp90","Dispossessedp90")
+
+#Shots Stats
+BigFiveShot <- read.csv('C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\Shooting.txt')
+
+BigFiveShot <-select(BigFiveShot,"Player","Squad",
+                           "Sh.90","SoT.90")
+
+#Pass Type Stats
+BigFivePassTyp <- read.csv('C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\FactorAnalysis-master\\PassTypes.txt')
+
+BigFivePassTyp <-select(BigFivePassTyp,"Player","Squad",
+                      "ThroughBallp90","PassUnderPress",
+                      "Switches","GroundPasses","LowPasses",
+                      "HighPasses","PassesInt")
+
+
+#Join DFs
+alldata_fbref<-merge(x = BigFiveoverall, y = BigFiveCreate, by = c("Player","Squad"), all.x = TRUE)
+alldata_fbref<-alldata_fbref[complete.cases(alldata_fbref),]
+
+alldata_fbref<-merge(x = alldata_fbref, y = BigFiveDef, by = c("Player","Squad"), all.x = TRUE)
+alldata_fbref<-alldata_fbref[complete.cases(alldata_fbref),]
+
+alldata_fbref<-merge(x = alldata_fbref, y = BigFiveMiscs, by = c("Player","Squad"), all.x = TRUE)
+alldata_fbref<-alldata_fbref[complete.cases(alldata_fbref),]
+
+alldata_fbref<-merge(x = alldata_fbref, y = BigFivePass, by = c("Player","Squad"), all.x = TRUE)
+alldata_fbref<-alldata_fbref[complete.cases(alldata_fbref),]
+
+alldata_fbref<-merge(x = alldata_fbref, y = BigFivePoss, by = c("Player","Squad"), all.x = TRUE)
+alldata_fbref<-alldata_fbref[complete.cases(alldata_fbref),]
+
+alldata_fbref<-merge(x = alldata_fbref, y = BigFiveShot, by = c("Player","Squad"), all.x = TRUE)
+alldata_fbref<-alldata_fbref[complete.cases(alldata_fbref),]
+
+alldata_fbref<-merge(x = alldata_fbref, y = BigFivePassTyp, by = c("Player","Squad"), all.x = TRUE)
+alldata_fbref<-alldata_fbref[complete.cases(alldata_fbref),]
+
+#Create clean version of player name
+alldata_fbref['Name']<-sub("\\\\.*", "", alldata_fbref$Player)
+
+#Convert recovered balls to per 90
+alldata_fbref$RecovBallsp90<-alldata_fbref$RecovBalls/(alldata_fbref$Min/90)
+
+#writing into a csv file
+
+write.csv(alldata_fbref,"C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\data\\fbref_201920.csv")
+#Filter on players >=500 mins played
+Overall1920<-filter(Overall1920,Min>=500)
+
+#Import data from squads to scale some statistics
+
+#Squad possession and touches data
+Possession <- read.csv('SquadsTouches.txt')
+Possession <- select(Possession,"Squad","Comp","Poss","Touches")
+
+#Squad attempted passes data
+Passes <- read.csv('SquadsPasses.txt')
+Passes <- select(Passes,"Squad","Comp","AttSquad")
+
+#Squad minutes played data
+Mins <- read.csv('SquadsMins.txt')
+Mins <- select(Mins,"Squad","Comp","SquadMin")
+
+#Merge squad data into player data
+Overall1920<-merge(x = Overall1920, y = Possession, by = c("Squad","Comp"), all.x = TRUE)
+Overall1920<-Overall1920[complete.cases(Overall1920),]
+
+Overall1920<-merge(x = Overall1920, y = Passes, by = c("Squad","Comp"), all.x = TRUE)
+Overall1920<-Overall1920[complete.cases(Overall1920),]
+
+Overall1920<-merge(x = Overall1920, y = Mins, by = c("Squad","Comp"), all.x = TRUE)
+Overall1920<-Overall1920[complete.cases(Overall1920),]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#NEW DATA TO PRE-PROCESS
+
+```{r}
+new_dat=read.csv("C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\data\\fbref_201920.csv")
+```
+
+```{r}
+utils::View(new_dat)
+```
+
+
+
+```{r}
+library(dplyr)
+fwds=new_dat %>%filter(Pos=='FW')
+```
+
+```{r}
+utils::View(fwds)
+```
+
+
+```{r}
+mids=new_dat %>% filter(Pos=='MF')
+```
+
+```{r}
+utils::View(mids)
+```
+
+```{r}
+dfs=new_dat %>% filter(Pos=='DF')
+
+```
+
+```{r}
+utils::View(dfs)
+```
+
+
+
+
+```{r}
+write.csv(fwds,"C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\data\\2019fwds.csv")
+write.csv(mids,"C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\data\\2019mids.csv")
+write.csv(dfs,"C:\\Users\\krishna\\Desktop\\PROJECT-2020\\FactorAnalysis-master\\data\\2019defs.csv")
+```
+

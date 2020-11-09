@@ -22,11 +22,9 @@ library(ggrepel)
 library(png)
 library(DT)
 
-setwd("C:\\Users\\krishna\\Desktop\\PROJECT_UPD\\Final_project")
-
 
 #loading ui file
-dset=read.csv("C:\\Users\\krishna\\Desktop\\PROJECT\\2020SEPT\\dB_FIFA.csv")
+dset=read.csv("data/dB_FIFA.csv")
 
 ###########
 # LOAD UI #
@@ -76,6 +74,7 @@ shinyUI(fluidPage(theme=shinytheme("simplex"),
 
                          "<td style='padding: 5px;'><a href='https://www.linkedin.com/in/hari-krishna-a05b44187/' target='_blank'><i class='fab fa-linkedin fa-lg'></i></a></td>",
                          "<td style='padding: 5px;'><a href='https://www.twitter.com/Hakrishna19' target='_blank'><i class='fab fa-twitter fa-lg'></i></a></td>",
+                         "<td style='padding: 5px;'><a href='https://github.com/harikrishna19' target='_blank'><i class='fab fa-github fa-lg'></i></a></td>",
                          "</tr>",
                          "</table>",
                          "<br>"),
