@@ -2,64 +2,22 @@
 
 ##  The project mainly focuses on top 5 European Leagues(La Liga,Premier League,Bundesliga,serie A,French League)
 
-###### An interactive dasboard in implemented in which some of the statistical measures(E.G.Mean,Variance etc) is caluculated and lot of visulaizations(Radar Charts,Bar Charts is shown)
+###### An interactive dasboard in implemented in which some of the statistical measures  is caluculated and lot of visulaizations(Radar Charts,Bar Charts is shown)
 
+###### Project consists of 
+* Home Page
+* Leagues Analysis Page
+* Player Comparison Page
+* Loan Analysis Page
 
-###### AHP(Analytic Hierarchy Process) Method is used to calculate criteria weights
-###### Ranking is done using MCDM(Multi-Criteria Decision) Making Techniques.TOPSIS(Technique for Order of Preference by Similarity to Ideal Solution) is used.
+##### App Screenshots
 
+![Optional Text](../main/screenshots-project/Screenshot (197).png)
 
-### HOMEPAGE
-
-![Optional Text](../main/screenshots-project/homepage.png)
-
-
-
-### LEAGUE STATS PAGE
-
-![Optional Text](../main/screenshots-project/LEAGUESTATS.png)
-
-
-![Optional Text](../main/screenshots-project/LEAGUESTATS1.png)
-
-
-![Optional Text](../main/screenshots-project/LEAGUESTATS2.png)
-
-
-![Optional Text](../main/screenshots-project/LEAGUESTATS3.png)
-
-
-### PLAYER COMPARISON PAGE
-
-![Optional Text](../main/screenshots-project/PLAYERCOMP1.png)
-
-![Optional Text](../main/screenshots-project/PLAYERCOMP2.png)
-
-
-
-### TRANSFER ANALYSIS PAGE
-
-![Optional Text](../main/screenshots-project/TRANSFER1.png)
-
-![Optional Text](../main/screenshots-project/TRANSFER2.png)
-
-
-
-
-
-
-### AHP WEIGHTS PAGE
-
-
-![Optional Text](../main/screenshots-project/PRIORITY.png)
-
-
-![Optional Text](../main/screenshots-project/PRIORITY1.png)
-
-
-
-
-### RANKING
-
-
-![Optional Text](../main/screenshots-project/RANKING.png)
+![Optional Text](../main/screenshots-project/Screenshot (198).png)
+![Optional Text](../main/screenshots-project/Screenshot (199).png)
+![Optional Text](../main/screenshots-project/Screenshot (200).png)
+![Optional Text](../main/screenshots-project/Screenshot (201).png)
+![Optional Text](../main/screenshots-project/Screenshot (202).png)
+![Optional Text](../main/screenshots-project/Screenshot (203).png)
+![Optional Text](../main/screenshots-project/Screenshot (204).png)
