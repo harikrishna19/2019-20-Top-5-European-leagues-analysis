@@ -9,3 +9,22 @@
 * Leagues Analysis Page
 * Player Comparison Page
 * Loan Analysis Page
+
+###### App ScreenShots:
+![Optional Text](../main/screenshots-project/Home.png)
+
+![Optional Text](../main/screenshots-project/L1.png)
+
+![Optional Text](../main/screenshots-project/L2.png)
+
+![Optional Text](../main/screenshots-project/L3.png)
+
+
+![Optional Text](../main/screenshots-project/L4.png)
+
+![Optional Text](../main/screenshots-project/Player.png)
+
+
+![Optional Text](../main/screenshots-project/Loan1.png)
+
+![Optional Text](../main/screenshots-project/Loan2.png)
